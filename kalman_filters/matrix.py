@@ -121,6 +121,10 @@ class matrix:
         return res
     
     def inverse(self):
+        if self.rows == 1 and self.cols == 1:
+            if self.value[0][0] == 0:
+                raise ValueError("Cannot invert a zero scalar")
+            return matrix([[1. / self.value[0][0]]])
         aux = self.Cholesky()
         res = aux.CholeskyInverse()
         return res
